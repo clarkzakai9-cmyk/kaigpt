@@ -1,4 +1,3 @@
-# Use a lightweight base image
 FROM debian:bookworm-slim
 
 # Install Ollama
@@ -7,11 +6,8 @@ RUN apt-get update && \
     curl -fsSL https://ollama.com/install.sh | sh && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Optional: create model directory (if using volumes)
-RUN mkdir -p /models
-
-# Expose Ollama port
+# Railway exposes $PORT, but Ollama uses 11434
 EXPOSE 11434
 
-# Start Ollama server only — no model loading
-CMD ["sh", "-c", "ollama serve"]
+# Start Ollama, wait, then pull phi-2
+CMD ["sh", "-c", "ollama serve & sleep 5 && ollama pull phi:2"]
