@@ -1,9 +1,14 @@
 app = "kaigpt"
 primary_region = "iad"
 
+[build]
+
 [http_service]
   internal_port = 11434
   force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
   processes = ["app"]
 
 [experimental]
@@ -12,7 +17,6 @@ primary_region = "iad"
   min_machines_running = 1
 
 [[vm]]
-  memory = "2gb"           # bump to 2GB to prevent OOM
-  memory_mb = 2048
   cpu_kind = "shared"
   cpus = 1
+  memory_mb = 4096
