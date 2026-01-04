@@ -11,7 +11,7 @@ ENTRYPOINT ["/bin/sh"]
 CMD ["-c", "\
   ollama serve & \
   sleep 4 && \
-  ollama pull phi3:mini && \
+  ollama pull qwen2.5:1.5b && \
   ollama create airoater -f /Modelfile && \
   tail -f /dev/null \
 "]
