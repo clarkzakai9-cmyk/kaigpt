@@ -8,10 +8,6 @@ EXPOSE 11434
 ENTRYPOINT ["/bin/sh"]
 
 # Run everything inside a single shell script
-CMD ["-c", "\
-  ollama serve & \
-  sleep 4 && \
-  ollama pull phi3:mini && \
-  ollama create airoater -f /Modelfile && \
-  tail -f /dev/null \
-"]
+CMD ["sh", "-c", "ollama serve"]
+
+
