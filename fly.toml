@@ -1,28 +1,18 @@
-# fly.toml app configuration file for kaigpt
-# See https://fly.io/docs/reference/configuration/
-
 app = "kaigpt"
 primary_region = "iad"
-
-[build]
 
 [http_service]
   internal_port = 11434
   force_https = true
-
-  # Keep the machine awake so the model stays loaded
-  auto_stop_machines = false
-  auto_start_machines = true
-
-  # 0 means "don't force a minimum number of machines"
-  min_machines_running = 0
-
   processes = ["app"]
 
+[experimental]
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+
 [[vm]]
-  # 1GB RAM is perfect for phi3:mini
   memory = "1gb"
   memory_mb = 1024
-
   cpu_kind = "shared"
   cpus = 1
