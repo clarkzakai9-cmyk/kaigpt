@@ -10,4 +10,4 @@ RUN apt-get update && \
 EXPOSE 11434
 
 # Start Ollama, wait, then pull phi-2
-CMD ["sh", "-c", "ollama serve & sleep 5 && ollama pull phi:2"]
+CMD ["sh", "-c", "ollama serve & sleep 5 && ollama pull Qwen2.5:0.5B"]
