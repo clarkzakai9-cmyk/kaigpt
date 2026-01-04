@@ -4,7 +4,14 @@ COPY Modelfile /Modelfile
 
 EXPOSE 11434
 
-# Override the default entrypoint so we can run shell commands
-ENTRYPOINT ["/bin/sh", "-c"]
+# Force shell as entrypoint
+ENTRYPOINT ["/bin/sh"]
 
-CMD "ollama serve & sleep 3 && ollama pull phi3:mini && ollama create airoater -f /Modelfile && tail -f /dev/null"
+# Run everything inside a single shell script
+CMD ["-c", "\
+  ollama serve & \
+  sleep 4 && \
+  ollama pull phi3:mini && \
+  ollama create airoater -f /Modelfile && \
+  tail -f /dev/null \
+"]
